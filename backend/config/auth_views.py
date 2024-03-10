@@ -16,13 +16,17 @@ class TokenObtainSerializer(serializers.Serializer):
     username_field = User.USERNAME_FIELD
 
     default_error_messages = {
-        "no_active_account": _("No active account found with the given credentials")
+        "no_active_account": _(
+            "No active account found with the given credentials"
+        )
     }
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
-        self.fields[self.username_field] = serializers.CharField(write_only=True)
+        self.fields[self.username_field] = serializers.CharField(
+            write_only=True
+        )
         self.fields["password"] = PasswordField()
 
     def validate(self, attrs):
@@ -73,7 +77,7 @@ class TokenRefreshSerializer(serializers.Serializer):
             data["refresh"] = str(refresh)
 
         # Updating users active status
-        User.objects.filter(external_id=refresh["user_id"]).update(
+        User.objects.filter(uuid=refresh["user_id"]).update(
             last_login=localtime(now())
         )
 
@@ -95,7 +99,9 @@ class TokenObtainPairSerializer(TokenObtainSerializer):
         data["refresh"] = str(refresh)
         data["access"] = str(refresh.access_token)
 
-        User.objects.filter(id=self.user.id).update(last_login=localtime(now()))
+        User.objects.filter(id=self.user.id).update(
+            last_login=localtime(now())
+        )
 
         return data
 

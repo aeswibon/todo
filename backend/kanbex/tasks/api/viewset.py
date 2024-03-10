@@ -9,7 +9,9 @@ from rest_framework import permissions, viewsets
 class TaskFilter(filters.FilterSet):
     title = filters.CharFilter(lookup_expr="icontains")
     status = filters.MultipleChoiceFilter(choices=Status.choices())
-    due_date = filters.DateFromToRangeFilter(field_name="due_date", label="Due Date")
+    due_date = filters.DateFromToRangeFilter(
+        field_name="due_date", label="Due Date"
+    )
 
 
 @extend_schema(tags=["tasks"])
@@ -21,6 +23,7 @@ class TaskViewSet(viewsets.ModelViewSet):
     lookup_field = "uuid"
     search_fields = ["title", "status", "due_date"]
 
+    filterset_class = TaskFilter
     filter_backends = [drf_filters.SearchFilter, filters.DjangoFilterBackend]
 
     def get_queryset(self):

@@ -30,7 +30,9 @@ if READ_DOT_ENV_FILE := env.bool("DJANGO_READ_DOT_ENV_FILE", default=False):
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-1&t+20l*^staw%^gk8z_bd7wqf(a5n#&(d4dwddd*hcb6r+^%4"
+SECRET_KEY = (
+    "django-insecure-1&t+20l*^staw%^gk8z_bd7wqf(a5n#&(d4dwddd*hcb6r+^%4"
+)
 
 ALLOWED_HOSTS = []
 
@@ -212,7 +214,7 @@ SIMPLE_JWT = {
         minutes=env("JWT_REFRESH_TOKEN_LIFETIME", default=30)
     ),
     "ROTATE_REFRESH_TOKENS": True,
-    "USER_ID_FIELD": "external_id",
+    "USER_ID_FIELD": "uuid",
 }
 
 

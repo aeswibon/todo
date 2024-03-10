@@ -22,7 +22,7 @@ class Status(enum.Enum):
 
 
 class Task(BaseTask):
-    title = models.CharField(max_length=255, unique=True)
+    title = models.CharField(max_length=255)
     description = models.TextField(blank=True, null=True)
     status = models.CharField(
         max_length=20, choices=Status.choices(), default=Status.TODO

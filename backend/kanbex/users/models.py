@@ -18,7 +18,9 @@ class CustomUserManager(UserManager):
     ) -> Any:
         extra_fields["phone"] = "+919696969696"
         extra_fields["is_verified"] = True
-        return super().create_superuser(username, email, password, **extra_fields)
+        return super().create_superuser(
+            username, email, password, **extra_fields
+        )
 
 
 class User(AbstractUser):
@@ -35,3 +37,7 @@ class User(AbstractUser):
     def delete(self, *args: Any, **kwargs: Any) -> None:
         self.deleted = True
         self.save()
+
+    @staticmethod
+    def has_read_permission(request: Any) -> bool:
+        return request.user.is_authenticated
