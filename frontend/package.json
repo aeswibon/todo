@@ -85,7 +85,7 @@
     "stylelint-config-standard": "^26.0.0",
     "tailwindcss": "^3.4.1",
     "typescript": "^4.6.3",
-    "vite": "^3.0.2",
+    "vite": "^3.2.8",
     "vite-plugin-fonts": "^0.6.0",
     "vite-plugin-html": "^3.2.0",
     "vite-plugin-imagemin": "^0.6.1"
