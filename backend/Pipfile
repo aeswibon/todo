@@ -1,0 +1,28 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+django-filter = "==23.5"
+djangorestframework = "==3.14.0"
+djangorestframework-simplejwt = "==5.3.1"
+dry-rest-permissions = "==0.1.10"
+drf-nested-routers = "==0.93.5"
+drf-spectacular = "==0.27.1"
+django-rest-passwordreset = "==1.4.0"
+django-environ = "==0.11.2"
+psycopg = "==3.1.12"
+psycopg-binary = "==3.1.12"
+mypy = "==1.8.0"
+django = {extras = ["argon2"], version = "*"}
+argon2-cffi = "==23.1.0"
+
+[dev-packages]
+black = "==24.2.0"
+isort = "==5.13.2"
+pre-commit = "==3.6.2"
+flake8 = "==7.0.0"
+
+[requires]
+python_version = "3.12"

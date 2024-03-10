@@ -1,0 +1,34 @@
+version: "3.9"
+networks:
+  default:
+    name: pesto
+services:
+  db:
+    image: postgres:alpine
+    restart: always
+    env_file:
+      - ./docker/.env
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+  backend:
+    image: pesto_local
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    env_file:
+      - ./docker/.env
+    entrypoint: ["sh", "docker/dev.sh"]
+    volumes:
+      - .:/app
+    ports:
+      - "9000:9000"
+    depends_on:
+      db:
+        condition: service_healthy
+volumes:
+  postgres_data:
