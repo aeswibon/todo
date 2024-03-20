@@ -19,7 +19,7 @@ django = {extras = ["argon2"], version = "*"}
 argon2-cffi = "==23.1.0"
 
 [dev-packages]
-black = "==24.2.0"
+black = "==24.3.0"
 isort = "==5.13.2"
 pre-commit = "==3.6.2"
 flake8 = "==7.0.0"
